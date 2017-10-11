@@ -1,0 +1,54 @@
+<html>
+<head>
+<title>charCode/keyCode/which example</title>
+
+</head>
+
+<body
+>
+
+<input type="text" autofocus
+ onkeypress="showKeyPress(event);"
+ onkeydown="keyDown(event);"
+/>
+
+<h2>Por favor presione cualquier tecla con el cursor en la caja.</h2>
+
+  <div id="chuchu"></div>
+  <div id="tutu"></div>
+
+<script type="text/javascript">
+
+function showKeyPress(evt) {
+  tutu.innerHTML = (`
+      <h2>onkeypress handler:</h2>
+      <ol>
+        <li> keyCode property: ${evt.keyCode}</li>
+        <li> key property: ${evt.key}</li>
+        <li> code property: ${evt.code}</li>
+        <li> which property: ${evt.which}</li>
+        <li> charCode property (deprecated?): ${evt.charCode}</li>
+        <li> Character Key Pressed: ${String.fromCharCode(evt.charCode)}</li>
+      </ol></li>
+     `);
+}
+
+
+function keyDown(evt) {
+  tutu.innerHTML = "";
+  chuchu.innerHTML = (`
+      <h2>onkeydown handler:</h2>
+      <ol>
+        <li> keyCode property (deprecated?): ${evt.keyCode}</li>
+        <li> key property: ${evt.key}</li>
+        <li> code property: ${evt.code}</li>
+        <li> which property: ${evt.which}</li>
+      </ol>
+     `);
+}
+
+
+</script>
+
+</body>
+</html>
