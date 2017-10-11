@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <button>Act-once/Act-many button</button>
+  <button id="remove">Remove listener</button>
+  <div id="chuchu"></div>
+  <script>
+    var button = document.querySelector("button");
+    var count = 0;
+    function once(e) {
+      console.log("Clicked "+count);
+      var msg = document.createElement("h2");
+      msg.innerHTML = "Clicked "+count;
+      chuchu.appendChild(msg); 
+      count++;
+    }
+    function second() {
+      console.log("Not counting anymore ");
+      var msg = document.createElement("h2");
+      msg.innerHTML = "Not counting any more ";
+      chuchu.appendChild(msg); 
+    }
+    button.addEventListener("click", once);
+    var buttonRemove = document.querySelector("#remove");
+    buttonRemove.addEventListener("click", () => {
+      button.removeEventListener("click", once);
+      button.addEventListener("click", second);
+    });
+  </script> 
+</body>
+</html>
