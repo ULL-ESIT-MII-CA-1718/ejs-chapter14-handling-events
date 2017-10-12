@@ -6,20 +6,29 @@
 </head>
 <body>
  <p>A paragraph with a <button>button</button>.</p>
+ <div id="but"></div>
+ <div id="par"></div>
   <script>
     var para = document.querySelector("p");
     var button = document.querySelector("button");
+    var paraCount = 0;
+    var butCount = 0;
     para.addEventListener("mousedown", function() {
-      console.log("Handler for paragraph.");
+      console.log("Handler for paragraph. "+paraCount);
+      par.innerHTML = `<h1>Handler for paragraph ${paraCount}</h1>`;
+      paraCount++;
     });
     button.addEventListener("mousedown", function(event) {
       event.preventDefault();
-      console.log("Handler for button.");
+      console.log("Handler for button. "+butCount);
+      but.innerHTML = `<h1>Handler for button ${butCount}</h1>`;
       if ((event.which == 3) || ( event.ctrlKey || event.button == 2 ))
         event.stopPropagation();
+      butCount++;
     });
 
     /* To prevent the context menu to show up */
+    /* We call preventDefault for the contextmenu event */
     document.addEventListener("contextmenu", function(e){
       e.preventDefault();
     }, false);
