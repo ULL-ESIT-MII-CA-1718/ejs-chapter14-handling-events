@@ -5,23 +5,23 @@
   <title></title>
   <style type="text/css">
     button {
+      -webkit-transition-duration: 0.4s; /* Safari */
       background-color: #4CAF50; /* Green */
       border: none;
       color: white;
-      padding: 32px 64px;
-      text-align: center;
-      text-decoration: none;
+      cursor: pointer;
       display: inline-block;
       font-size: 16px;
       margin: 4px 2px;
-      -webkit-transition-duration: 0.4s; /* Safari */
+      padding: 32px 64px;
+      text-align: center;
+      text-decoration: none;
       transition-duration: 0.4s;
-      cursor: pointer;
     }
     button:hover {
       background-color: white; 
-      color: black; 
       border: 2px solid #4CAF50;
+      color: black; 
     }
   </style>
 </head>
@@ -36,21 +36,17 @@
 
     button.addEventListener("mousedown", function(event) {
       console.log("button = "+event.button);
-      if (event.button == 0) {
-        console.log("Left button");
-        console.log("target = ");
-        console.dir(event.target);
-        console.log("screenX = "+event.screenX); // The X coordinate of the mouse pointer in global (screen) coordinates.
-        console.log("screenY = "+event.screenY);
-        console.log("clientX = "+event.clientX); // The X coordinate of the mouse pointer in local (DOM content) coordinates.
-        console.log("clientY = "+event.clientY); // Document-relative coordinates start from the left-upper corner of the document, 
+      if (event.button == 0) { console.log("Left button"); }
+      if (event.ctrlKey) { console.log("Control Key pressed"); }
+      if (event.button == 2) console.log("Right button");
+
+      console.log("target = ");
+      console.dir(event.target);
+      console.log("screenX = "+event.screenX); // The X coordinate of the mouse pointer in global (screen) coordinates.
+      console.log("screenY = "+event.screenY);
+      console.log("clientX = "+event.clientX); // The X coordinate of the mouse pointer in local (DOM content) coordinates.
+      console.log("clientY = "+event.clientY); // Document-relative coordinates start from the left-upper corner of the document, 
                                                  // not the window. https://javascript.info/coordinates
-      }
-      if (event.ctrlKey) {
-        console.log("Control Key pressed");
-      }
-      else if (event.button == 2)
-        console.log("Right button");
     });
 
     /* To prevent the context menu to show up when ctrl-key is pressed */
