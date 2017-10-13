@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+   <style>
+    body {
+      height: 100%;
+      background: white;
+    }
+    .dot {
+      height: 8px; width: 8px;
+      border-radius: 4px; /* rounds corners */
+      background: blue;
+      position: absolute; /* The element is positioned relative to its first positioned (not static) ancestor element */
+     /*
+        La posición de las capas con “position:absolute” se fija mediante
+        unas coordenadas, que vienen dadas por los atributos top y left.
+        El punto inicial de estas coordenadas es la esquina superior izquierda
+        de la caja que contiene los elementos.
+     */
+    }
+  </style>
+</head>
+<body>
+  <script>
+    addEventListener("click", function(event) {
+      var dot = document.createElement("div");
+      dot.className = "dot";
+      dot.style.left = (event.pageX - 4) + "px";
+      dot.style.top = (event.pageY - 4) + "px";
+      document.body.appendChild(dot);
+    });
+  </script> 
+</body>
+</html>
