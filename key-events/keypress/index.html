@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <p>Focus this page and type something.</p>
+  <script>
+    addEventListener("keypress", function(event) {
+      console.log(`event.charCode = ${event.charCode}`);
+      console.log(`String.fromCharCode(event.charCode) = ${String.fromCharCode(event.charCode)}`);
+      //console.log(`event.char = ${event.char}`);
+      console.log(`event.key = ${event.key}`);
+      console.log(`event.shiftKey = ${event.shiftKey}`);
+      console.log(`event.ctrlKey = ${event.ctrlKey}`);
+      console.log(`event.bubbles = ${event.bubbles}`);
+    });
+  </script> 
+</body>
+</html>
