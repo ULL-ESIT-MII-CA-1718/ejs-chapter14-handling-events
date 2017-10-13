@@ -3,19 +3,61 @@
 <head>
   <meta charset="UTF-8">
   <title></title>
+  <style type="text/css">
+    button {
+      background-color: #4CAF50; /* Green */
+      border: none;
+      color: white;
+      padding: 32px 64px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      -webkit-transition-duration: 0.4s; /* Safari */
+      transition-duration: 0.4s;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: white; 
+      color: black; 
+      border: 2px solid #4CAF50;
+    }
+  </style>
 </head>
 <body>
   <button>Click me any way you want</button>
   <script>
+    /* See https://developer.mozilla.org/es/docs/Web/Reference/Events/mousedown */
     var button = document.querySelector("button");
+    /* El evento mousedown se activa cuando el botón de un dispositivo
+    apuntador (usualmente el botón de un ratón) es presionado en
+    un elemento.*/
+
     button.addEventListener("mousedown", function(event) {
-      if (event.which == 1)
+      console.log("button = "+event.button);
+      if (event.button == 0) {
         console.log("Left button");
-      else if (event.which == 2)
-        console.log("Middle button");
-      else if (event.which == 3)
+        console.log("target = ");
+        console.dir(event.target);
+        console.log("screenX = "+event.screenX); // The X coordinate of the mouse pointer in global (screen) coordinates.
+        console.log("screenY = "+event.screenY);
+        console.log("clientX = "+event.clientX); // The X coordinate of the mouse pointer in local (DOM content) coordinates.
+        console.log("clientY = "+event.clientY); // Document-relative coordinates start from the left-upper corner of the document, 
+                                                 // not the window. https://javascript.info/coordinates
+      }
+      if (event.ctrlKey) {
+        console.log("Control Key pressed");
+      }
+      else if (event.button == 2)
         console.log("Right button");
     });
+
+    /* To prevent the context menu to show up when ctrl-key is pressed */
+    /* We call preventDefault for the contextmenu event */
+    document.addEventListener("contextmenu", function(e){
+      e.preventDefault();
+    }, false);
   </script> 
 </body>
 </html>
