@@ -4,22 +4,27 @@
   <meta charset="UTF-8">
   <title></title>
 </head>
+<style>
+  #hover:hover { color: blue }
+</style>
 <body>
-  <p>Hover over this <strong>paragraph</strong>.</p>
+  <p id="prog">Hover over this <strong>paragraph</strong>.</p>
+  <p id="hover">Hover over this <strong>paragraph</strong>.</p>
+
   <script>
-    var para = document.querySelector("p");
+    var paraProg = document.querySelector("#prog");
     function isInside(node, target) {
       for (; node != null; node = node.parentNode)
         if (node == target) return true;
     }
-    para.addEventListener("mouseover", function(event) {
+    paraProg.addEventListener("mouseover", function(event) {
       // What element the pointer was over before
-      if (!isInside(event.relatedTarget, para))
-        para.style.color = "red";
+      if (!isInside(event.relatedTarget, paraProg))
+        paraProg.style.color = "red";
     });
-    para.addEventListener("mouseout", function(event) {
-      if (!isInside(event.relatedTarget, para))
-        para.style.color = "";
+    paraProg.addEventListener("mouseout", function(event) {
+      if (!isInside(event.relatedTarget, paraProg))
+        paraProg.style.color = "";
     });
   </script> 
 </body>
