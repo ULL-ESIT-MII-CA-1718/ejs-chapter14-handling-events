@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<style type="text/css">
+#bar { 
+  background: orange; 
+  height: 20px;
+  width: 60px; 
+}
+</style>
+<body>
+  <p>Drag the bar to change its width:</p>
+  <div id="bar">
+  </div>
+  <script>
+    var lastX; // Tracks the last observed mouse X position
+    var bar = document.querySelector("#bar");
+
+    /* El evento mousedown se activa cuando el botón de un dispositivo
+    apuntador (usualmente el botón de un ratón) es presionado en
+    un elemento. */
+    bar.addEventListener("mousedown", function(event) {
+      console.log(`event.which = ${event.which}`);
+      console.log(`event.button = ${event.button}`);
+      if (event.button == 0) {
+        lastX = event.pageX;
+        /* The mousemove handler is registered on the whole window.
+        Even if the mouse goes outside of the bar during resizing,
+        we still want to update its size and stop dragging when the
+        mouse is released.
+        */
+        addEventListener("mousemove", moved);
+        event.preventDefault(); // Prevent selection
+      }
+    });
+
+    function buttonPressed(event) {
+      /*
+         event.buttons: The buttons being pressed when the mouse
+         event was fired: Left button=1, Right button=2, Middle
+         (wheel) button=4, 4th button (typically, "Browser Back"
+         button)=8, 5th button (typically, "Browser Forward"
+         button)=16. If two or more buttons are pressed, returns
+         the logical sum of the values. E.g., if Left button and
+         Right button are pressed, returns 3 (=1 | 2).
+       */
+      console.log(event.buttons);
+      console.log(event.which);
+      /* On Safari event.buttons is not defined but event.which is */
+      if (!event.buttons)
+        return event.which != 0;
+      else 
+        return event.buttons != 0;
+    }
+
+    function moved(event) {
+      if (!buttonPressed(event)) {
+        removeEventListener("mousemove", moved);
+      } else {
+        var dist = event.pageX - lastX;
+        /* 
+          The offsetWidth property returns the viewable width of
+          an element in pixels, including padding, border and scrollbar,
+          but not the margin.
+        */
+        var newWidth = Math.max(10, bar.offsetWidth + dist);
+        bar.style.width = newWidth + "px";
+        lastX = event.pageX;
+      }
+    }
+  </script> 
+</body>
+</html>

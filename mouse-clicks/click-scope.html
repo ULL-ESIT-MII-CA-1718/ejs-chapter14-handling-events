@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <script type="text/javascript">
+		// Crear una lista
+   function createList() {
+		  var ul = document.createElement('ul');
+      document.body.appendChild(ul);
+
+      for(let i=0;i<10;i++) {
+        var li1 = document.createElement('li');
+        li1.textContent =  `Press the mouse on one item then drag to another and the whole list disappears. 
+          Click the mouse in only one item and only that item disappears`;
+        ul.appendChild(li1);
+      }
+    }
+
+		function hide(e){
+			// e.target refers to the most specific node 
+			// This is different than e.currentTarget which refers 
+      // to the element to which the event handler has been attached (the document in this case),
+			e.target.style.visibility = 'hidden';
+
+      // To get precise information about the place where a mouse
+      // event happened, you can look at its pageX and pageY properties,
+      // which contain the event’s coordinates (in pixels) relative
+      // to the top-left corner of the document.
+      console.log(`e.pageX = ${e.pageX}`);
+      console.log(`e.pageY = ${e.pageY}`);
+      console.log(`e.screenX = ${e.screenX}`);
+      console.log(`e.screenY = ${e.screenY}`);
+      console.log(`e.clientX = ${e.clientX}`);
+      console.log(`e.clientY = ${e.clientY}`);
+		}
+
+    createList();
+    createList();
+		// Attach the listener to the document
+		document.addEventListener('click', hide, false);  
+    /*
+      After the "`mouseup`" event, a "`click`" event fires on the most specific
+      node that contained both the press and the release of the button.
+
+      For example, if I press down the mouse button on one paragraph and
+      then move the pointer to another paragraph and release the button,
+      the "`click`" event will happen on the element that contains both
+      those paragraphs.
+    */
+  </script>
+</body>
+</html>
