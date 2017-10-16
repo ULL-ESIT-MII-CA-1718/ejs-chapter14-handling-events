@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <div id="chuchu"></div>
+ <script type="text/javascript">
+		var ticks = 0;
+		var clock = setInterval(function() {
+			console.log("tick", ticks++);
+      chuchu.innerHTML += `tick ${ticks}<br\>\n`;
+			if (ticks == 10) {
+				clearInterval(clock);
+        chuchu.innerHTML += `stop<br\>\n`;
+				console.log("stop.");
+			}
+		}, 200);
+ </script> 
+</body>
+</html>
