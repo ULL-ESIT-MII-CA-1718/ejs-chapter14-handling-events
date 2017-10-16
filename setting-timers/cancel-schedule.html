@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <h1>Will it explode? Wait ... and see ...</h1>
+  <div id="chuchu"></div>
+  <script type="text/javascript">
+     var bombTimer = setTimeout(function() {
+      console.log("BOOM!");
+      chuchu.innerHTML = "<h1>BOOM!!!</h1>";
+    }, 500);
+
+    if (Math.random() < 0.5) { // 50% chance
+      console.log("Defused.");
+      chuchu.innerHTML = "<h1>The bomb has been defused</h1>";
+      clearTimeout(bombTimer);
+    }
+  </script>
+</body>
+</html>
