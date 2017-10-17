@@ -1,3 +1,0 @@
-[submodule "script-execution-timeline/simple-web-worker"]
-	path = script-execution-timeline/simple-web-worker
-	url = https://github.com/SYTW/js-webworker-examples.git
